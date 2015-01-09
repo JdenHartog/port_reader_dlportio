@@ -83,10 +83,10 @@ class port_reader_dlportio(item.item, generic_response.generic_response):
 			self._duration = 500
 		else:
 			try:
-				self._port = windll.inpout32
+				self._port = windll.dlportio
 			except:
 				raise osexception( \
-					"Failed to load inpout32.dll in port_reader '%s'" \
+					"Failed to load dlportio.dll in port_reader '%s'" \
 					% self.name)
 			self._duration_func = self.get_portinput
 
