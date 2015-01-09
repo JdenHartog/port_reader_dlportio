@@ -49,6 +49,7 @@ class port_reader_dlportio(item.item, generic_response.generic_response):
 		self.description = \
 			"Collects input from a port for the purpose of response collection"
 		
+		self.version = 0.1
 		self.timeout = "infinite"
 		self.port = 889
 		self.resting_value = 7
@@ -212,7 +213,8 @@ class qtport_reader_dlportio(port_reader_dlportio, qtplugin.qtplugin):
 			"infinite")
 		self.add_checkbox_control("convert", "Convert to 5 6 7 8", tooltip= \
 			"Convert responses for E-Prime compatibility")
-			
+		self.add_text("<small><b>Port_reader_dlportio plug-in v%.2f</b></small>" % self.version)		
+		
 		# Add a stretch to the edit_vbox, so that the controls do not
 		# stretch to the bottom of the window.
 		self.edit_vbox.addStretch()

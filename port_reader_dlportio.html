@@ -29,7 +29,8 @@
 <P>The port_reader_dlportio plug-in reads input from an arbitrary port, such
 as a parallel or serial port, and interprets the return value as a
 participant's response (i.e., a button press). It's basically a copy of the
-port_reader plug-in working with dlportio.ddl instead of inpout32.dll.</P>
+port_reader plug-in working with dlportio.ddl instead of inpout32.dll.
+Also an option to convert to a 'E-Prime compatible' lpt register numbers has been added.</P>
 <H2 CLASS="western">Options</H2>
 <P><B>Dummy mode</B> - If set to 'yes', the keyboard is used instead.
 Useful for testing purposes.</P>
@@ -39,6 +40,9 @@ as 'no button pressed'.</P>
 <P><B>Correct response</B> - The expected response.</P>
 <P><B>Timeout</B> - The maximum allowed response time, after which a
 timeout should be signaled.</P>
+<P><B>Convert to 5 6 7 8</B> - This converts the decimal values 23, 39, 71 and 135
+ to 5, 6, 7 and 8. These are the numbers of the lpt register. 
+ When multiple buttons are pressed the lowest number overrules. </P>
 <P><BR><BR>
 </P>
 </BODY>
