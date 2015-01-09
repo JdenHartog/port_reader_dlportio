@@ -51,7 +51,7 @@ class port_reader_dlportio(item.item, generic_response.generic_response):
 		
 		self.timeout = "infinite"
 		self.port = 889
-		self.resting_value = 127
+		self.resting_value = 7
 		self.auto_response = 255 # 'a'
 		self.duration = "portinput"
 		self.dummy = "no"
