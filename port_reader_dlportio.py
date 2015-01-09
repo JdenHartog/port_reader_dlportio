@@ -56,6 +56,7 @@ class port_reader_dlportio(item.item, generic_response.generic_response):
 		self.duration = "portinput"
 		self.dummy = "no"
 		self.process_feedback = True				
+		self.convert = u'yes'
 		
 		# The parent handles the rest of the contruction
 		item.item.__init__(self, name, experiment, string)
@@ -68,6 +69,15 @@ class port_reader_dlportio(item.item, generic_response.generic_response):
 			val = self._port.Inp32(self.port)
 			time = self.time()
 			if val != self.resting_value:
+				if self.convert == u'yes':
+					if val & 0x10 == 0x10:
+						val = 5
+					elif val & 0x20 == 0x20:
+						val = 6
+					elif val & 0x40 == 0x40:
+						val = 7
+					elif val & 0x80 == 0x80:
+						val = 8
 				break
 			if self._timeout != None and time - self.sri > self._timeout:
 				val = "timeout"
@@ -200,7 +210,9 @@ class qtport_reader_dlportio(port_reader_dlportio, qtplugin.qtplugin):
 		self.add_line_edit_control("timeout", "Timeout", tooltip= \
 			"Expecting a value in milliseconds or 'infinite'", default= \
 			"infinite")
-
+		self.add_checkbox_control("convert", "Convert to 5 6 7 8", tooltip= \
+			"Convert responses for E-Prime compatibility")
+			
 		# Add a stretch to the edit_vbox, so that the controls do not
 		# stretch to the bottom of the window.
 		self.edit_vbox.addStretch()
